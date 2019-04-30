@@ -1,0 +1,20 @@
+{
+  "apps": [
+    {
+      "name": "Sync Server Production",
+      "script": "index.js",
+      "cwd": "./sync-server/",
+      "env": {
+        "SYNC_PORT": 9095
+      }
+    },
+    {
+      "name": "Sync Server Develop",
+      "script": "index.js",
+      "cwd": "./sync-server/",
+      "env": {
+        "SYNC_PORT": 9090
+      }
+    }
+  ]
+}

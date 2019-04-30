@@ -1,0 +1,44 @@
+extends layout.pug
+
+block header
+  style(type='text/css').
+    .alert {
+      display: flex;
+      align-items: center;
+    }
+
+    .message:first-child {
+      flex: 1;
+    }
+
+    .options {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity .5s;
+    }
+
+    .banners:not(:hover) *:first-child>.options {
+      visibility: visible;
+      opacity: .4;
+    }
+
+    *:hover > .options {
+      visibility: visible;
+      opacity: 1;
+    }
+
+block content
+  h1(class='pb-2 mt-4 mb-2 border-bottom') Edit Banners
+
+  div(class='banners')
+    each banner in banners
+      div(class=`alert ${banner.active ? 'alert-success' : 'alert-info'}`)
+        span(class='message')
+          | !{banner.message}
+        div(class='options btn-group')
+          a(class='btn btn-primary' href=`/banners/${banner._id}/${banner.active ? 'hide' : 'show'}`)
+            | #{banner.active ? 'Disable' : 'Make Active'}
+          a(class='btn btn-secondary' href=`/banners/${banner._id}`) Edit
+          a(class='btn btn-secondary' href=`/banners/${banner._id}/delete`) Delete
+  
+  a(class='btn btn-success btn-lg' href='/banners/create') New Banner

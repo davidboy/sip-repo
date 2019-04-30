@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+  h1(class='pb-2 mt-4 mb-2 border-bottom') #{banner ? 'Edit' : 'Create'} Banner
+
+  form(method='post' action=`/banners/${banner ? banner._id + '/?_method=put' : ''}`)
+    div(class='form-group row')
+      label(for='message' class='col-md-2 col-form-label') Message
+      div(class='col-md-10')
+        input(type='text' class='form-control' name='message' id='message' value=(banner ? banner.message : ''))
+
+    div(class='form-group row')
+      div(class='col-md-offset-2 col-md-10')
+        button(type='submit' class='btn btn-primary') #{banner ? 'Update' : 'Create'}
